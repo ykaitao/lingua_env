@@ -1,0 +1,2 @@
+[console_scripts]
+server = lingua_env.server.app:main
