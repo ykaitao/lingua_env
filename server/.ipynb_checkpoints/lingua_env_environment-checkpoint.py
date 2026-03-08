@@ -18,7 +18,7 @@ from pathlib import Path
 
 from openenv.core.env_server import Environment
 
-from ..models import LinguaAction, LinguaObservation, LinguaState
+from lingua_env.models import LinguaAction, LinguaObservation, LinguaState
 
 
 PYMORPHY_FEATURE_MAP = {
