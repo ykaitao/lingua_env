@@ -15,11 +15,17 @@ import json
 import random
 import uuid
 from pathlib import Path
+import urllib.request
 
 from openenv.core.env_server import Environment
 
 from lingua_env.models import LinguaAction, LinguaObservation, LinguaState
 
+data_path = Path("/tmp/ambiguous_examples.jsonl")
+DATA_SOURCE = "https://huggingface.co/datasets/ykaitao/lingua_env_data/resolve/main/ambiguous_examples.jsonl"
+if not data_path.exists():
+    print(f"Downloading dataset from {DATA_SOURCE}")
+    urllib.request.urlretrieve(DATA_SOURCE, data_path)
 
 PYMORPHY_FEATURE_MAP = {
     "nomn": ("Case", "Nom"),
@@ -120,7 +126,7 @@ def score_candidate(candidate: dict, gold: dict) -> dict:
 class LinguaEnvironment(Environment):
     def __init__(self):
         super().__init__()
-        data_path = Path(__file__).resolve().parents[1] / "data" / "ambiguous_examples.jsonl"
+
         with open(data_path, "r", encoding="utf-8") as f:
             self.examples = [json.loads(line) for line in f]
 
