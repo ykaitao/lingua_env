@@ -35,8 +35,8 @@ except Exception as e:  # pragma: no cover
         "openenv is required for the web interface. Install dependencies with:\n    uv sync\n"
     ) from e
 
-from ..models import LinguaAction, LinguaObservation
-from .lingua_env_environment import LinguaEnvironment
+from lingua_env.models import LinguaAction, LinguaObservation
+from lingua_env.server.lingua_env_environment import LinguaEnvironment
 
 app = create_app(
     LinguaEnvironment,
